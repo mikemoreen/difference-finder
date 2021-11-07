@@ -1,13 +1,11 @@
-// import yaml from 'js-yaml';
-import _ from 'lodash';
+import yaml from 'js-yaml';
 
 const parse = (data, format) => {
-  if (_.isEmpty(data)) {
-    return {};
-  }
   if (format === 'json') {
     return JSON.parse(data);
   }
-  throw new Error(`Unknown format for parsing: ${format}`);
+  if (format === ('yml' || 'yaml')) {
+    return yaml.load(data);
+  }
 };
 export default parse;
