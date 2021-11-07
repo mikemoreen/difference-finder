@@ -20,8 +20,8 @@ const genDiff = (path1, path2, formatName = 'stylish') => {
 
   const tree = difference(object1, object2);
   const formatedDiff = makeStylish(tree);
-  console.log(tree)
-  console.log(formatedDiff)
+  console.log(tree);
+  console.log(formatedDiff);
   // return formatedDiff;
 };
 export default genDiff;
