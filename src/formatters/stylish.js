@@ -29,6 +29,7 @@ const makeStylish = (array, spaces = 0) => {
     if (object.type === 'changed') {
       return `${makeSpace(spaces + 1)}- ${object.key}: ${makeString(object.oldValue, spaces)}\n${makeSpace(spaces + 1)}+ ${object.key}: ${makeString(object.newValue, spaces)}`;
     }
+    throw new Error(`Unknown type: '${object.type}'!`);
   }).join('\n');
 
   return result;

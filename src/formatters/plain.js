@@ -25,7 +25,7 @@ const makePlain = (tree) => {
         case 'removed':
           return `Property '${path}${item.key}' was removed`;
         default:
-          null;
+          throw new Error(`Unknown type: '${item.type}'!`);
       }
     }).join('\n');
   return iter(tree, '');
