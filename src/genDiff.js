@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import parse from './parse.js';
 import difference from './findDifference.js';
-import makeStylish from './formatters/stylish.js';
+import formatting from './formatters/index.js';
 
 const readFile = (pathName) => {
   const fullPath = path.resolve(process.cwd(), pathName);
@@ -19,9 +19,7 @@ const genDiff = (path1, path2, formatName = 'stylish') => {
   const object2 = parse(data2, format2);
 
   const tree = difference(object1, object2);
-  const formatedDiff = makeStylish(tree);
-  console.log(tree);
-  console.log(formatedDiff);
-  // return formatedDiff;
+  const formatedDiff = formatting(tree, formatName);
+  return formatedDiff;
 };
 export default genDiff;
