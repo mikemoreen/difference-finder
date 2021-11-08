@@ -17,7 +17,6 @@ const genDiff = (path1, path2, formatName = 'stylish') => {
   const format2 = path.extname(path2).substring(1);
   const object1 = parse(data1, format1);
   const object2 = parse(data2, format2);
-
   const tree = difference(object1, object2);
   const formatedDiff = formatting(tree, formatName);
   return formatedDiff;

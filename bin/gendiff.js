@@ -11,9 +11,7 @@ program
   .helpOption('-h, --help', 'output usage information')
   .action((filepath1, filepath2) => {
     const { format } = program.opts();
-
     const diff = genDiff(filepath1, filepath2, format);
-
     console.log(diff);
   })
   .parse(process.argv);
