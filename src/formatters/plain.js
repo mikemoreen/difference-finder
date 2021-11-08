@@ -4,7 +4,10 @@ const makeString = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
-  return String(value);
+  if (typeof value === 'string') {
+    return `'${value}'`;
+  }
+  return `${value}`;
 };
 
 const makePlain = (tree) => {
@@ -16,9 +19,9 @@ const makePlain = (tree) => {
         case 'parent':
           return iter(item.children, `${path + item.key}.`);
         case 'added':
-          return `Property '${path}${item.key}' was added with value: '${makeString(item.value)}'`;
+          return `Property '${path}${item.key}' was added with value: ${makeString(item.value)}`;
         case 'changed':
-          return `Property '${path}${item.key}' was updated. From '${makeString(item.oldValue)}' to '${makeString(item.newValue)}'`;
+          return `Property '${path}${item.key}' was updated. From ${makeString(item.oldValue)} to ${makeString(item.newValue)}`;
         case 'removed':
           return `Property '${path}${item.key}' was removed`;
         default:
