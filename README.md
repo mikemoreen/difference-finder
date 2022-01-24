@@ -28,3 +28,5 @@ Options:
 * -V, --version        output the version number
 * -f, --format [type]  output format (choices: "stylish", "plain", "json", default: stylish)
 * -h, --help           display help for command
+### Example for JSON and yml files:
+[![asciicast](https://asciinema.org/a/zX7hJjqMjmGYKhj67HVl3AHlJ.svg)](https://asciinema.org/a/snem0KMTSreLyNVZX7O1Nxeco)
