@@ -14,22 +14,20 @@ const makeString = (value, spaces) => {
 
 const makeStylish = (array, spaces = 0) => {
   const result = array.map((object) => {
-    if (object.type === 'added') {
-      return `${makeSpace(spaces + 1)}+ ${object.key}: ${makeString(object.value, spaces)}`;
+    switch (object.type) {
+      case 'added':
+        return `${makeSpace(spaces + 1)}+ ${object.key}: ${makeString(object.value, spaces)}`;
+      case 'removed':
+        return `${makeSpace(spaces + 1)}- ${object.key}: ${makeString(object.value, spaces)}`;
+      case 'parent':
+        return ` ${makeSpace(spaces + 1)} ${object.key}: {\n${makeStylish(object.children, spaces + 2)}\n${makeSpace(spaces + 2)}}`;
+      case 'unchanged':
+        return `${makeSpace(spaces + 1)}  ${object.key}: ${makeString(object.value, spaces)}`;
+      case 'changed':
+        return `${makeSpace(spaces + 1)}- ${object.key}: ${makeString(object.oldValue, spaces)}\n${makeSpace(spaces + 1)}+ ${object.key}: ${makeString(object.newValue, spaces)}`;
+      default:
+        throw new Error(`Unknown type: '${object.type}'!`);
     }
-    if (object.type === 'removed') {
-      return `${makeSpace(spaces + 1)}- ${object.key}: ${makeString(object.value, spaces)}`;
-    }
-    if (object.type === 'parent') {
-      return ` ${makeSpace(spaces + 1)} ${object.key}: {\n${makeStylish(object.children, spaces + 2)}\n${makeSpace(spaces + 2)}}`;
-    }
-    if (object.type === 'unchanged') {
-      return `${makeSpace(spaces + 1)}  ${object.key}: ${makeString(object.value, spaces)}`;
-    }
-    if (object.type === 'changed') {
-      return `${makeSpace(spaces + 1)}- ${object.key}: ${makeString(object.oldValue, spaces)}\n${makeSpace(spaces + 1)}+ ${object.key}: ${makeString(object.newValue, spaces)}`;
-    }
-    throw new Error(`Unknown type: '${object.type}'!`);
   }).join('\n');
 
   return result;

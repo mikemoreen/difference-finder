@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "type": "module",
   "version": "1.0.0",
-  "description": "project",
+  "description": "Compares two configuration files and show difference",
   "main": "index.js",
   "scripts": {
     "test": "npx jest --bail"
@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/mikemoreen/frontend-project-lvl2.git"
   },
-  "author": "",
+  "author": "mikemoreen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/mikemoreen/frontend-project-lvl2/issues"

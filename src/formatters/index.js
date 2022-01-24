@@ -7,9 +7,4 @@ const formatters = {
   json: JSON.stringify,
 };
 
-const formatting = (tree, format = 'stylish') => {
-  const formatFunction = formatters[format];
-  return formatFunction(tree);
-};
-
-export default formatting;
+export default (tree, format = 'stylish') => formatters[format]?.(tree);

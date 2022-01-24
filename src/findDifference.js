@@ -1,28 +1,28 @@
 import _ from 'lodash';
 
-const difference = (obj1, obj2) => {
-  const keys = _.sortBy(_.union(_.keys(obj1), _.keys(obj2)));
+const calcDiff = (data1, data2) => {
+  const keys = _.sortBy(_.union(_.keys(data1), _.keys(data2)));
   const result = keys.map((key) => {
-    if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj2[key])) {
-      return { key, children: difference(obj1[key], obj2[key]), type: 'parent' };
+    if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
+      return { key, children: calcDiff(data1[key], data2[key]), type: 'parent' };
     }
-    if (!_.has(obj1, key)) {
-      return { key, value: obj2[key], type: 'added' };
-    }
-
-    if (!_.has(obj2, key)) {
-      return { key, value: obj1[key], type: 'removed' };
+    if (!_.has(data1, key)) {
+      return { key, value: data2[key], type: 'added' };
     }
 
-    if (!_.isEqual(obj1[key], obj2[key])) {
+    if (!_.has(data2, key)) {
+      return { key, value: data1[key], type: 'removed' };
+    }
+
+    if (!_.isEqual(data1[key], data2[key])) {
       return {
-        key, oldValue: obj1[key], newValue: obj2[key], type: 'changed',
+        key, oldValue: data1[key], newValue: data2[key], type: 'changed',
       };
     }
 
-    return { key, value: obj1[key], type: 'unchanged' };
+    return { key, value: data1[key], type: 'unchanged' };
   });
   return result;
 };
 
-export default difference;
+export default calcDiff;
