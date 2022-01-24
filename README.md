@@ -6,6 +6,7 @@
 # Difference finder
 ## About
 Compares two configuration files and shows a difference.<br>
+### Install:
 ```sh
 git clone
 make install
